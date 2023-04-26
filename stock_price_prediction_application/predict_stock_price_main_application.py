@@ -17,4 +17,9 @@ options = " TESLA STOCK LINEAR REGRESSION PREDICTION , " \
           "TESLA STOCK svm  REGRESSION PREDICTION, " \
           " TESLA STOCK DECISION TREE  PREDICTION, TESLA STOCK BAYESIAN RIDGE REGRESSION  PREDICTION, Exit".split(",")
 
-
+# Input Start Date
+def start_date():
+    date_entry = input('Enter a starting date in MM/DD/YYYY format: ')
+    start = datetime.datetime.strptime(date_entry,'%m/%d/%Y')
+    start = start.strftime('%Y-%m-%d')
+    return start
