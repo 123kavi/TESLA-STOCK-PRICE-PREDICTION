@@ -1,0 +1,80 @@
+import datetime
+
+from matplotlib import pyplot as plt
+# Machine Learning Libraries
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import BayesianRidge
+import numpy as np  # Import the NumPy module with alias 'np'
+import warnings
+
+from sklearn.tree import DecisionTreeRegressor
+warnings.filterwarnings("ignore")
+
+import pandas as pd
+file_path = "../dataset/TSLA.csv"
+
+options = " TESLA STOCK LINEAR REGRESSION PREDICTION , " \
+          "TESLA STOCK svm  REGRESSION PREDICTION, " \
+          " TESLA STOCK DECISION TREE  PREDICTION, TESLA STOCK BAYESIAN RIDGE REGRESSION  PREDICTION, Exit".split(",")
+
+# Input Start Date
+def start_date():
+    date_entry = input('Enter a starting date in MM/DD/YYYY format: ')
+    start = datetime.datetime.strptime(date_entry,'%m/%d/%Y')
+    start = start.strftime('%Y-%m-%d')
+    return start
+
+
+# Input End Date
+def end_date():
+    while True:
+        try:
+            date_entry = input("Enter end date (MM/DD/YYYY): ")
+            end = datetime.datetime.strptime(date_entry, '%m/%d/%Y')
+            return end.date()
+        except ValueError:
+            print("Error: Please enter a valid date in the format MM/DD/YYYY")
+
+# Input Symbols
+def input_symbol():
+    symbol = input("Enter symbol: ").upper()
+    return symbol
+
+# Decision Tree Regression
+def stock_decision_tree_regression():
+    s = start_date()
+    e = end_date()
+    sym = input_symbol()
+    df = pd.read_csv(file_path)  # Use pd.read_csv to read the CSV file
+
+    n = len(df.index)
+    X = np.array(df['Open']).reshape(n, -1)
+    Y = np.array(df['Adj Close']).reshape(n, -1)
+    sr = DecisionTreeRegressor()
+    sr.fit(X, Y)
+    predicted = sr.predict(X)
+    print('_____________Summary:')
+    print('Accuracy Score:', sr.score(X, Y))
+    plt.figure(figsize=(12, 8))
+    plt.scatter(df['Adj Close'], predicted)
+    plt.scatter(X, predicted, color='red')
+    plt.xlabel('Prices')
+    plt.ylabel('Predicted Prices')
+    plt.grid()
+    plt.title(sym + ' Prices vs Predicted Prices ( Decision tree  Regression)')
+    plt.show()
+    print('_____________Summary:_____________')
+
+    ans = ['1', '2']
+    user_input = input("""                  
+What would you like to do next? Enter option 1 or 2.  
+ 1. Tesla Price Prediction Algorithm  
+ 2.Click To Exist  
+Command: """)
+    while user_input not in ans:
+        print("Error: Please enter a valid option 1-2")
+        user_input = input("Command: ")
+    if user_input == "1":
+        menu()
+    elif user_input == "2":
+        exit()    
