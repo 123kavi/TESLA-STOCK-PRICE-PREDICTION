@@ -33,4 +33,10 @@ def end_date():
             end = datetime.datetime.strptime(date_entry, '%m/%d/%Y')
             return end.date()
         except ValueError:
-            print("Error: Please enter a valid date in the format MM/DD/YYYY")    
+            print("Error: Please enter a valid date in the format MM/DD/YYYY")
+
+# Input Symbols
+def input_symbol():
+    symbol = input("Enter symbol: ").upper()
+    return symbol
+    
