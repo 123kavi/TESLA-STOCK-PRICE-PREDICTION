@@ -162,3 +162,44 @@ Command: """)
         menu()
     elif user_input == "2":
         exit()
+
+
+# ***********************************************************************************************************************#
+# ******************************************************* MAIN MENU **********************************************************#
+# ***********************************************************************************************************************#
+def menu():
+    ans = ['1', '2', '3', '4', '5', '0']
+    print(""" 
+
+                                                      |  PRICE PREDICTION ALGORITHMS |
+         ||||||||||||||||||||||||||||||||||||||||  MACHINE LEARNING STOCK PRICE PREDICTION  ||||||||||||||||||||||||||||||||||||||||
+
+
+
+                  1.TESLA STOCK LINEAR REGRESSION PREDICTION 
+                  2.TESLA STOCK SVM  REGRESSION PREDICTION
+                  3.TESLA STOCK DECISION TREE  PREDICTION
+                  4.TESLA STOCK BAYESIAN RIDGE REGRESSION  PREDICTION
+                  5.MAIN MENU
+                  0.CLICK EXIT 
+                  """)
+    user_input = input("Command (0-5): ")
+    while user_input not in ans:
+        print("Error: Please enter a valid option 0-5")
+        user_input = input("Command: ")
+    if user_input == '1':
+        stock_linear_regression()
+    elif user_input == '2':
+        stock_svr()
+    elif user_input == '3':
+        stock_decision_tree_regression()
+    elif user_input == "4":
+        stock_bayesian_ridge_regression()
+    elif user_input == '5':
+        beginning()
+    elif user_input == "0":
+        exit()
+
+    # ***********************************************************************************************************************#
+# *************************************************** Start of Program **************************************************#
+# ***********************************************************************************************************************#
