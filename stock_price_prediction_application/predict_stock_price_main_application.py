@@ -77,4 +77,36 @@ Command: """)
     if user_input == "1":
         menu()
     elif user_input == "2":
-        exit()    
+        exit()
+
+#***********************************************************************************************************************#    
+#*************************************************** Start of Program **************************************************# 
+#***********************************************************************************************************************#  
+def beginning():
+    print()
+    print("| WELCOME TO SUPERVISED  LEARNING  STOCK PRICE PREDICTION |")
+    print("""
+you can  choose option 1 or 2
+              
+ 1.Tesla Price Prediction Algorithm  
+ 2.Click To Exist  
+
+""")
+    ans = ['1', '2']
+    print()
+
+    user_input=input("Please input your option?: ")
+    print("""""")
+
+
+    while user_input not in ans:
+        print("Error: Please enter a a valid option 1-2")
+        user_input=input("Command: ")
+    if user_input=="1":
+        menu()
+    elif user_input=="2":
+        exit()
+  
+    
+#***********************************************************************************************************************#     
+beginning()          
