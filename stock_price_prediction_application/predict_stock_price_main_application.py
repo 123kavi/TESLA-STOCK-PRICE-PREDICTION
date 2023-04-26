@@ -39,4 +39,42 @@ def end_date():
 def input_symbol():
     symbol = input("Enter symbol: ").upper()
     return symbol
-    
+
+# Decision Tree Regression
+def stock_decision_tree_regression():
+    s = start_date()
+    e = end_date()
+    sym = input_symbol()
+    df = pd.read_csv(file_path)  # Use pd.read_csv to read the CSV file
+
+    n = len(df.index)
+    X = np.array(df['Open']).reshape(n, -1)
+    Y = np.array(df['Adj Close']).reshape(n, -1)
+    sr = DecisionTreeRegressor()
+    sr.fit(X, Y)
+    predicted = sr.predict(X)
+    print('_____________Summary:')
+    print('Accuracy Score:', sr.score(X, Y))
+    plt.figure(figsize=(12, 8))
+    plt.scatter(df['Adj Close'], predicted)
+    plt.scatter(X, predicted, color='red')
+    plt.xlabel('Prices')
+    plt.ylabel('Predicted Prices')
+    plt.grid()
+    plt.title(sym + ' Prices vs Predicted Prices ( Decision tree  Regression)')
+    plt.show()
+    print('_____________Summary:_____________')
+
+    ans = ['1', '2']
+    user_input = input("""                  
+What would you like to do next? Enter option 1 or 2.  
+ 1. Tesla Price Prediction Algorithm  
+ 2.Click To Exist  
+Command: """)
+    while user_input not in ans:
+        print("Error: Please enter a valid option 1-2")
+        user_input = input("Command: ")
+    if user_input == "1":
+        menu()
+    elif user_input == "2":
+        exit()    
