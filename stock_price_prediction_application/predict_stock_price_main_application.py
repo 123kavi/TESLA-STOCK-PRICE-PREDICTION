@@ -23,3 +23,14 @@ def start_date():
     start = datetime.datetime.strptime(date_entry,'%m/%d/%Y')
     start = start.strftime('%Y-%m-%d')
     return start
+
+
+# Input End Date
+def end_date():
+    while True:
+        try:
+            date_entry = input("Enter end date (MM/DD/YYYY): ")
+            end = datetime.datetime.strptime(date_entry, '%m/%d/%Y')
+            return end.date()
+        except ValueError:
+            print("Error: Please enter a valid date in the format MM/DD/YYYY")    
